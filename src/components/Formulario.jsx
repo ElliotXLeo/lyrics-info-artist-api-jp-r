@@ -6,6 +6,7 @@ const Formulario = ({ setBusquedaInformacion }) => {
     artista: '',
     cancion: ''
   });
+  
   const [error, setError] = useState(false);
   const { artista, cancion } = busqueda;
 
@@ -23,6 +24,10 @@ const Formulario = ({ setBusquedaInformacion }) => {
     } else {
       setError(false);
       setBusquedaInformacion(busqueda);
+      setBusqueda({
+        artista: '',
+        cancion: ''
+      });
     }
   }
 
@@ -48,7 +53,8 @@ const Formulario = ({ setBusquedaInformacion }) => {
                     className="form-control"
                     placeholder="Nombre del artista"
                     onChange={actualizarState}
-                    value={artista} />
+                    value={artista}
+                    required />
                 </div>
 
                 <div className="col-md-6">
@@ -60,7 +66,8 @@ const Formulario = ({ setBusquedaInformacion }) => {
                     className="form-control"
                     placeholder="Nombre de la canción"
                     onChange={actualizarState}
-                    value={cancion} />
+                    value={cancion}
+                    required />
                 </div>
               </div>
               <button

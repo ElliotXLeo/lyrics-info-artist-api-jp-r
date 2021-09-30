@@ -14,19 +14,31 @@ function App() {
       return;
     } else {
       const consultarApiLetra = async () => {
-        const { artista, cancion } = busquedaInformacion;
-        const urlLetra = `https://api.lyrics.ovh/v1/${artista}/${cancion}`;
-        const urlArtista = `https://www.theaudiodb.com/api/v1/json/1/search.php?s=${artista}`;
+        try {
+          const { artista, cancion } = busquedaInformacion;
+          const urlLetra = `https://api.lyrics.ovh/v1/${artista}/${cancion}`;
 
-        const [letra, informacionArtista] = await Promise.all([
-          axios(urlLetra),
-          axios(urlArtista)
-        ]);
-        setLetra(letra.data.lyrics);
-        setInformacionArtista(informacionArtista.data.artists[0]);
+          const resultado = await axios(urlLetra);
+          setLetra(resultado.data.lyrics);
+        } catch (error) {
+          setLetra('No hay resultados');
+        }
+      }
+      const consultarApiInformacionArtista = async () => {
+        try {
+          const { artista } = busquedaInformacion;
+          const urlArtista = `https://www.theaudiodb.com/api/v1/json/1/search.php?s=${artista}`;
+
+          const resultado = await axios(urlArtista);
+          setInformacionArtista(resultado.data.artists[0]);
+        } catch (error) {
+          setInformacionArtista('');
+        }
       }
       consultarApiLetra();
+      consultarApiInformacionArtista();
     }
+
   }, [busquedaInformacion])
 
   return (

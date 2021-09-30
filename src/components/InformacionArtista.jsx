@@ -2,6 +2,15 @@ import { Fragment } from "react";
 
 const Biografia = ({ informacionArtista }) => {
 
+  if (informacionArtista === '') {
+    return (
+      <Fragment>
+        <h2>Información del Artista</h2>
+        <p>No hay resultados</p>
+      </Fragment>
+    );
+  }
+
   if (Object.keys(informacionArtista).length === 0) return null;
 
   const { strArtistThumb, strGenre, strBiographyES, strFacebook, strTwitter, strWebsite } = informacionArtista;
