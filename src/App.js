@@ -1,6 +1,8 @@
+import Formulario from "./components/Formulario";
+
 function App() {
   return (
-    <h1>Letras e Información del Artista</h1>
+    <Formulario />
   );
 }
 
