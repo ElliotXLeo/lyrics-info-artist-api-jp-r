@@ -1,14 +1,12 @@
 import { useState } from "react";
 
-const Formulario = () => {
+const Formulario = ({ setBusquedaInformacion }) => {
 
   const [busqueda, setBusqueda] = useState({
     artista: '',
     cancion: ''
   });
-
   const [error, setError] = useState(false);
-
   const { artista, cancion } = busqueda;
 
   const actualizarState = (e) => {
@@ -24,6 +22,7 @@ const Formulario = () => {
       setError(true);
     } else {
       setError(false);
+      setBusquedaInformacion(busqueda);
     }
   }
 
